@@ -1,0 +1,1 @@
+ALTER TABLE "auth_session" ALTER COLUMN "session" SET DATA TYPE varchar(2048);

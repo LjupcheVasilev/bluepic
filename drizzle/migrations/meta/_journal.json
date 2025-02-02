@@ -1,0 +1,55 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1738444646340,
+      "tag": "0001_longer_session_character_limit",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1738450398079,
+      "tag": "0002_little_zuras",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1738451666562,
+      "tag": "0003_gifted_zarek",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1738451840637,
+      "tag": "0004_common_songbird",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1738451909148,
+      "tag": "0005_complex_jack_flag",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1738454026967,
+      "tag": "0006_loving_smasher",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1738457342323,
+      "tag": "0007_redundant_annihilus",
+      "breakpoints": true
+    }
+  ]
+}
