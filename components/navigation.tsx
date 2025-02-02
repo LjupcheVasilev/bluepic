@@ -4,8 +4,8 @@ import { Home, Search, PlusSquare, Heart, User, LogOut, LogIn } from "lucide-rea
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import useSession from "@/hooks/useSession";
 import { useEffect, useState } from "react";
+import { useUserSession } from "@/context/UserContext";
 
 type NavItem = {
   name: string;
@@ -14,7 +14,8 @@ type NavItem = {
 };
 
 const Navigation = () => {
-  const { session, isLoading } = useSession();
+  const { session, user, isLoading } = useUserSession();
+  console.log(user)
   const [navigation, setNavigation] = useState<NavItem[]>([]);
   const pathname = usePathname();
 
@@ -42,7 +43,7 @@ const Navigation = () => {
     <nav className="fixed bottom-0 z-50 w-full border-t bg-background p-4 backdrop-blur-lg md:bottom-auto md:top-0 md:border-b md:border-t-0 md:h-auto">
       <div className="mx-auto flex max-w-6xl items-center justify-between">
         <Link href="/" className="hidden md:block">
-          <h1 className="text-xl font-bold">Instagram Clone</h1>
+          <h1 className="text-xl font-bold">BluePic</h1>
         </Link>
         <div className="flex w-full items-center justify-around md:w-auto md:gap-4">
           {navigation.map((item) => {

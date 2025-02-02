@@ -8,6 +8,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 
 import { ourFileRouter } from "./api/uploadthing/core";
+import { UserProvider } from '@/context/UserContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,11 +17,12 @@ export const metadata: Metadata = {
   description: 'An open social media network for sharing images.',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
@@ -33,6 +35,7 @@ export default function RootLayout({
            */
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
+        <UserProvider>
         <ThemeProvider attribute="class" defaultTheme="light">
           <div className="min-h-screen bg-background">
             <Navigation />
@@ -42,6 +45,7 @@ export default function RootLayout({
           </div>
           <Toaster />
         </ThemeProvider>
+        </UserProvider>
       </body>
     </html>
   );

@@ -29,15 +29,12 @@ export const posts = pgTable('posts', {
 })
 
 export const users = pgTable('users', {
-    id: uuid('id').primaryKey().defaultRandom(),
-    did: varchar('did', { length: 255 }).unique().notNull(),
+    did: varchar('did', { length: 255 }).primaryKey().notNull(),
     handle: varchar('handle', { length: 255 }).unique().notNull(),
     displayName: varchar('display_name', { length: 255 }),
-    avatar: text('avatar'),
-    bio: text('bio'),
-    email: varchar('email', { length: 255 }),
+    avatarLink: text('avatar_link'),
+    description: text('description'),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().notNull(),
     lastLogin: timestamp('last_login'),
-    isActive: boolean('is_active').default(true).notNull()
   })

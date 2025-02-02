@@ -1,5 +1,4 @@
 import PostFeed from "@/components/post-feed";
-import Stories from "@/components/stories";
 
 export default function Home() {
   return (
