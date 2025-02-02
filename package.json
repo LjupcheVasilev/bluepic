@@ -6,7 +6,11 @@
     "dev": "next dev -p 8080 --hostname 127.0.0.1",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:rollback": "drizzle-kit rollback",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@atproto/api": "^0.13.31",
