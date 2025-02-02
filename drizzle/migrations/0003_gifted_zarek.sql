@@ -1,1 +1,0 @@
-ALTER TABLE "posts" ADD COLUMN "uri" varchar(255) NOT NULL;
