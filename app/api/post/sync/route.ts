@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { posts } from "@/db/schema";
-import { isRecord } from "@/lexicon/types/app/bluepic/post";
+import { isRecord } from "@/lexicon/types/app/bluepic/feed/post";
 import { getSessionAgent } from "@/lib/getSessionAgent";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
@@ -14,7 +14,7 @@ export const GET = async () => {
 
     const response = await agent.com.atproto.repo.listRecords({
       repo: agent.assertDid,
-      collection: "app.bluepic.post",
+      collection: "app.bluepic.feed.post",
       limit: 50,
     });
 

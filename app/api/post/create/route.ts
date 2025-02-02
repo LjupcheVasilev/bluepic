@@ -1,7 +1,7 @@
 import { getSessionAgent } from "@/lib/getSessionAgent";
 import { NextResponse } from "next/server";
 import { TID } from "@atproto/common";
-import * as Post from "@/lexicon/types/app/bluepic/post";
+import * as Post from "@/lexicon/types/app/bluepic/feed/post";
 import { db } from "@/db";
 import { posts } from "@/db/schema";
 import { getUrl } from "@/lib/getUrl";
@@ -17,7 +17,7 @@ export const POST = async (req: Request) => {
   const rkey = TID.nextStr();
   const reqData = await req.json();
   const record = {
-    $type: "app.bluepic.post",
+    $type: "app.bluepic.feed.post",
     imageUrl: reqData.imageUrl,
     caption: reqData.caption,
     userId: agent.assertDid,
@@ -35,7 +35,7 @@ export const POST = async (req: Request) => {
     // Write the status record to the user's repository
     const res = await agent.com.atproto.repo.putRecord({
       repo: agent.assertDid,
-      collection: "app.bluepic.post",
+      collection: "app.bluepic.feed.post",
       rkey,
       record,
       validate: false,

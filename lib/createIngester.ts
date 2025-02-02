@@ -2,7 +2,7 @@ import pino from "pino";
 import { IdResolver, MemoryCache } from "@atproto/identity";
 import { Firehose } from "@atproto/sync";
 import type { Database } from "@/db";
-import * as Post from "@/lexicon/types/app/bluepic/post";
+import * as Post from "@/lexicon/types/app/bluepic/feed/post";
 import { posts } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
@@ -29,7 +29,7 @@ export function createIngester(db: Database, idResolver: IdResolver) {
 
         // If the write is a valid status update
         if (
-          evt.collection === "app.bluepic.post" &&
+          evt.collection === "app.bluepic.feed.post" &&
           Post.isRecord(record) &&
           Post.validateRecord(record).success
         ) {
@@ -57,7 +57,7 @@ export function createIngester(db: Database, idResolver: IdResolver) {
         }
       } else if (
         evt.event === "delete" &&
-        evt.collection === "app.bluepic.post"
+        evt.collection === "app.bluepic.feed.post"
       ) {
         // Remove the status from our SQLite
         await db.delete(posts).where(eq(posts.uri, evt.uri.toString()));
@@ -66,7 +66,7 @@ export function createIngester(db: Database, idResolver: IdResolver) {
     onError: (err) => {
       logger.error({ err }, "error on firehose ingestion");
     },
-    filterCollections: ["app.bluepic.post"],
+    filterCollections: ["app.bluepic.feed.post"],
     excludeIdentity: true,
     excludeAccount: true,
   });

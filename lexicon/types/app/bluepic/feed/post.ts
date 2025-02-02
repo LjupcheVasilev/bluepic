@@ -2,8 +2,8 @@
  * GENERATED CODE - DO NOT MODIFY
  */
 import { ValidationResult } from "@atproto/lexicon";
-import { lexicons } from "../../../lexicons";
-import { isObj, hasProp } from "../../../util";
+import { lexicons } from "../../../../lexicons";
+import { isObj, hasProp } from "../../../../util";
 
 export interface Record {
   imageUrl: string;
@@ -17,10 +17,10 @@ export function isRecord(v: unknown): v is Record {
   return (
     isObj(v) &&
     hasProp(v, "$type") &&
-    (v.$type === "app.bluepic.post#main" || v.$type === "app.bluepic.post")
+    (v.$type === "app.bluepic.feed.post#main" || v.$type === "app.bluepic.feed.post")
   );
 }
 
 export function validateRecord(v: unknown): ValidationResult {
-  return lexicons.validate("app.bluepic.post#main", v);
+  return lexicons.validate("app.bluepic.feed.post#main", v);
 }

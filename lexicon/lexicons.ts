@@ -238,9 +238,9 @@ export const schemaDict = {
       },
     },
   },
-  AppBluePicPost: {
+  AppBluePicFeedPost: {
     lexicon: 1,
-    id: "app.bluepic.post",
+    id: "app.bluepic.feed.post",
     defs: {
       main: {
         type: "record",
@@ -295,6 +295,6 @@ export const lexicons: Lexicons = new Lexicons(schemas);
 export const ids = {
   ComAtprotoLabelDefs: "com.atproto.label.defs",
   AppBskyActorProfile: "app.bsky.actor.profile",
-  AppBluePicPost: "app.bluepic.post",
+  AppBluePicFeedPost: "app.bluepic.feed.post",
   ComAtprotoRepoStrongRef: "com.atproto.repo.strongRef",
 };
