@@ -42,7 +42,6 @@ export const GET = async () => {
         indexedAt: now.toISOString(),
       };
 
-      console.log("upsertObj", upsertObj, record.uri);
       await db
         .insert(posts)
         .values(obj)
