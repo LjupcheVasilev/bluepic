@@ -40,9 +40,6 @@ export const GET = async (req: Request, res: Response) => {
       rkey: 'self',
     });
 
-    console.log(bskyProfile);
-    console.log(bskyProfile?.value);
-
     const handle = await resolveDidToHandle(createIdResolver(), session.did);
     const userObj: typeof users.$inferInsert = {
       did: session.did,

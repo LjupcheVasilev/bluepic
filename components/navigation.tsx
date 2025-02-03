@@ -15,7 +15,6 @@ type NavItem = {
 
 const Navigation = () => {
   const { session, user, isLoading } = useUserSession();
-  console.log(user)
   const [navigation, setNavigation] = useState<NavItem[]>([]);
   const pathname = usePathname();
 
