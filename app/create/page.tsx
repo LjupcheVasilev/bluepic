@@ -49,7 +49,7 @@ export default function CreatePost() {
         userId: userId,
       };
 
-      const res = await fetch("/api/post/create", {
+      const res = await fetch("/api/posts/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

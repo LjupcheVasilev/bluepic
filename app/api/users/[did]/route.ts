@@ -8,7 +8,7 @@ export const GET = async (
   { params }: { params: { did: string } }
 ) => {
   try {
-    const { did } = params;
+    const { did } = await params;
 
     const user = await db
       .select({

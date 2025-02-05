@@ -25,7 +25,7 @@ export const GET = async (req: Request, { params }: { params: Promise<{ rkey: st
       rkey
     });
 
-    const uri = `${agent.assertDid}/app.bluepic.feed.post/${rkey}`
+    const uri = `${agent.assertDid}/app.bluepic.feed.posts/${rkey}`
 
     // Then delete from local database
     await db.delete(posts)

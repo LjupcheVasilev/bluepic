@@ -25,7 +25,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
       <NextSSRPlugin
           /**
            * The `extractRouterConfig` will extract **only** the route configs
@@ -39,7 +39,7 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light">
           <div className="min-h-screen bg-background">
             <Navigation />
-            <main className="container mx-auto max-w-lg pb-16 md:pb-0 md:pt-16">
+            <main className="container mx-auto max-w-lg pb-16 md:pb-0 md:pt-24">
               {children}
             </main>
           </div>
