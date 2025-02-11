@@ -1,7 +1,7 @@
 /**
  * GENERATED CODE - DO NOT MODIFY
  */
-import { LexiconDoc, Lexicons } from "@atproto/lexicon";
+import { LexiconDoc, Lexicons } from "@atproto/lexicon"
 
 export const schemaDict = {
   ComAtprotoLabelDefs: {
@@ -268,6 +268,30 @@ export const schemaDict = {
       },
     },
   },
+  AppBluePicFeedLike: {
+    lexicon: 1,
+    id: 'app.bluepic.feed.like',
+    defs: {
+      main: {
+        type: 'record',
+        key: 'tid',
+        record: {
+          type: 'object',
+          required: ['subject', 'createdAt'],
+          properties: {
+            subject: {
+              type: 'object',
+              required: ['uri'],
+              properties: {
+                uri: { type: 'string' }
+              }
+            },
+            createdAt: { type: 'string', format: 'datetime' }
+          }
+        }
+      }
+    }
+  },
   ComAtprotoRepoStrongRef: {
     lexicon: 1,
     id: "com.atproto.repo.strongRef",
@@ -289,12 +313,13 @@ export const schemaDict = {
       },
     },
   },
-};
-export const schemas: LexiconDoc[] = Object.values(schemaDict) as LexiconDoc[];
-export const lexicons: Lexicons = new Lexicons(schemas);
+}
+export const schemas: LexiconDoc[] = Object.values(schemaDict) as LexiconDoc[]
+export const lexicons: Lexicons = new Lexicons(schemas)
 export const ids = {
   ComAtprotoLabelDefs: "com.atproto.label.defs",
   AppBskyActorProfile: "app.bsky.actor.profile",
   AppBluePicFeedPost: "app.bluepic.feed.post",
+  AppBluePicFeedLike: "app.bluepic.feed.like",
   ComAtprotoRepoStrongRef: "com.atproto.repo.strongRef",
-};
+}

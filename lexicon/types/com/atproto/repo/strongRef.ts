@@ -4,7 +4,6 @@
 import { ValidationResult, BlobRef } from '@atproto/lexicon'
 import { lexicons } from '../../../../lexicons'
 import { isObj, hasProp } from '../../../../util'
-import { CID } from 'multiformats/cid'
 
 export interface Main {
   uri: string

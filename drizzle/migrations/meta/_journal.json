@@ -22,6 +22,20 @@
       "when": 1738787926901,
       "tag": "0002_abandoned_valkyrie",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1739306801966,
+      "tag": "0003_concerned_lake",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1739308556131,
+      "tag": "0004_lucky_darwin",
+      "breakpoints": true
     }
   ]
 }

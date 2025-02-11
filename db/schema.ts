@@ -3,21 +3,19 @@ import {
   varchar,
   timestamp,
   text,
-  uuid,
-  boolean,
-} from "drizzle-orm/pg-core";
+} from "drizzle-orm/pg-core"
 
 export const authState = pgTable("auth_state", {
   key: varchar("key", { length: 255 }).primaryKey(),
   state: varchar("state", { length: 1024 }).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+})
 
 export const authSession = pgTable("auth_session", {
   key: varchar("key", { length: 255 }).primaryKey(),
   session: varchar("session", { length: 2048 }).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+})
 
 export const users = pgTable("users", {
   did: varchar("did", { length: 255 }).primaryKey().notNull(),
@@ -28,7 +26,7 @@ export const users = pgTable("users", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
   lastLogin: timestamp("last_login"),
-});
+})
 
 export const posts = pgTable("posts", {
   uri: varchar("uri", { length: 255 }).primaryKey(),
@@ -39,4 +37,12 @@ export const posts = pgTable("posts", {
   caption: text("caption"),
   createdAt: varchar("created_at", { length: 30 }).notNull(),
   indexedAt: varchar("updated_at", { length: 30 }).notNull(),
-});
+})
+
+export const likes = pgTable('likes', {
+  uri: varchar('id', { length: 255 }).primaryKey(),
+  userId: varchar('user_id', { length: 255 }).notNull().references(() => users.did),
+  postId: varchar('post_id', { length: 255 }).notNull().references(() => posts.uri),
+  createdAt: varchar("created_at", { length: 30 }).notNull(),
+  indexedAt: varchar("indexed_at", { length: 30 }).notNull(),
+})
