@@ -4,7 +4,6 @@
 import { ValidationResult, BlobRef } from '@atproto/lexicon'
 import { lexicons } from '../../../../lexicons'
 import { isObj, hasProp } from '../../../../util'
-import { CID } from 'multiformats/cid'
 import * as ComAtprotoLabelDefs from '../../../com/atproto/label/defs'
 import * as ComAtprotoRepoStrongRef from '../../../com/atproto/repo/strongRef'
 
@@ -17,8 +16,8 @@ export interface Record {
   /** Larger horizontal image to display behind profile view. */
   banner?: BlobRef
   labels?:
-    | ComAtprotoLabelDefs.SelfLabels
-    | { $type: string; [k: string]: unknown }
+  | ComAtprotoLabelDefs.SelfLabels
+  | { $type: string;[k: string]: unknown }
   joinedViaStarterPack?: ComAtprotoRepoStrongRef.Main
   createdAt?: string
   [k: string]: unknown

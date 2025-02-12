@@ -8,11 +8,13 @@ import { Heart } from "lucide-react"
 import { useGetPosts } from "@/hooks/useGetPosts/useGetPosts"
 import Image from "next/image"
 import { useLikes } from "@/hooks/useLikes/useLikes"
+import { useAvatars } from "@/hooks/useAvatars/useAvatars"
 import { cn } from "@/lib/utils"
 import useSession from "@/hooks/useSession"
 
 const PostFeed = () => {
   const { isLoading, posts, error } = useGetPosts()
+  const { avatars, fetchAvatar } = useAvatars()
   const {
     isLoading: isLoadingLike,
     error: likeError,
@@ -32,7 +34,16 @@ const PostFeed = () => {
     }
   }, [session, sessionLoading])
 
-  console.log(session)
+  // Fetch avatars for all posts
+  useEffect(() => {
+    if (!isLoading && posts) {
+      posts.forEach((post) => {
+        if (post.user.did) {
+          fetchAvatar(post.user.did)
+        }
+      })
+    }
+  }, [posts, isLoading, fetchAvatar])
 
   if (isLoading) return <p>Loading...</p>
   if (error) return <p>Error: {error}</p>
@@ -45,10 +56,10 @@ const PostFeed = () => {
       const likeRkey = likedPosts[postUri].split("/").pop()
       if (!likeRkey) return // Guard against malformed URIs
 
-      const success = await removeLike(likeRkey)
+      await removeLike(likeRkey)
     } else {
       // Post is not liked, add a like
-      const like = await addLike(postUri)
+      await addLike(postUri)
     }
   }
 
@@ -61,10 +72,12 @@ const PostFeed = () => {
               <div className="flex items-center gap-3">
                 <Avatar>
                   <AvatarImage
-                    src={post.user.avatarLink!}
-                    alt={post.user.displayName!}
+                    src={avatars[post.user.did] || undefined}
+                    alt={post.user.displayName || post.user.handle}
                   />
-                  <AvatarFallback>{post.user.displayName![0]}</AvatarFallback>
+                  <AvatarFallback>
+                    {(post.user.displayName || post.user.handle)[0]}
+                  </AvatarFallback>
                 </Avatar>
                 <div>
                   <p className="font-semibold">{post.user.handle}</p>

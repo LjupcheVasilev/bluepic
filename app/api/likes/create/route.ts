@@ -4,7 +4,6 @@ import { TID } from "@atproto/common"
 import * as Like from "@/lexicon/types/app/bluepic/feed/like"
 import { db } from "@/db"
 import { likes } from "@/db/schema"
-import { getUrl } from "@/lib/getUrl"
 import { NewLike } from "@/db/types"
 
 export const POST = async (req: Request) => {
