@@ -6,7 +6,7 @@ import { getSessionAgent } from "@/lib/getSessionAgent"
 
 export const GET = async (
     req: Request,
-    { params }: { params: { did: string } }
+    { params }: { params: Promise<{ did: string }> }
 ) => {
     const { did } = await params
     const agent = await getSessionAgent()
