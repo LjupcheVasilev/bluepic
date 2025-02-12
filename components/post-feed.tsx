@@ -1,20 +1,15 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import {
-  Heart,
-  MessageCircle,
-  Bookmark,
-  Share2,
-  MoreHorizontal,
-} from "lucide-react"
+import { Heart } from "lucide-react"
 import { useGetPosts } from "@/hooks/useGetPosts/useGetPosts"
 import Image from "next/image"
 import { useLikes } from "@/hooks/useLikes/useLikes"
 import { cn } from "@/lib/utils"
+import useSession from "@/hooks/useSession"
 
 const PostFeed = () => {
   const { isLoading, posts, error } = useGetPosts()
@@ -23,8 +18,21 @@ const PostFeed = () => {
     error: likeError,
     addLike,
     removeLike,
+    likedPosts,
   } = useLikes()
-  const [likedPosts, setLikedPosts] = useState<Record<string, string>>({}) // postUri -> likeUri mapping
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const { session, isLoading: sessionLoading } = useSession()
+
+  useEffect(() => {
+    if (!sessionLoading && session?.did) {
+      setIsLoggedIn(true)
+    } else {
+      setIsLoggedIn(false)
+    }
+  }, [session, sessionLoading])
+
+  console.log(session)
 
   if (isLoading) return <p>Loading...</p>
   if (error) return <p>Error: {error}</p>
@@ -34,27 +42,13 @@ const PostFeed = () => {
 
     if (likedPosts[postUri]) {
       // Post is already liked, remove the like
-      const likeRkey = likedPosts[postUri].split("/").pop() // This will get '3lhwmin4zr22j'
+      const likeRkey = likedPosts[postUri].split("/").pop()
       if (!likeRkey) return // Guard against malformed URIs
 
       const success = await removeLike(likeRkey)
-      if (success) {
-        setLikedPosts((prev) => {
-          const updated = { ...prev }
-          delete updated[postUri]
-          return updated
-        })
-      }
     } else {
       // Post is not liked, add a like
       const like = await addLike(postUri)
-
-      if (like) {
-        setLikedPosts((prev) => ({
-          ...prev,
-          [postUri]: like.uri,
-        }))
-      }
     }
   }
 
@@ -94,23 +88,22 @@ const PostFeed = () => {
             <div className="p-4">
               <div className="flex items-center justify-between">
                 <div className="flex gap-2">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleLikeClick(post.uri)}
-                    disabled={isLoadingLike}
-                  >
-                    <Heart
-                      className={cn(
-                        "h-5 w-5",
-                        likedPosts[post.uri] && "fill-red-500 text-red-500"
-                      )}
-                    />
-                  </Button>
+                  {isLoggedIn && (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => handleLikeClick(post.uri)}
+                      disabled={isLoadingLike}
+                    >
+                      <Heart
+                        className={cn(
+                          "h-5 w-5",
+                          likedPosts[post.uri] && "fill-red-500 text-red-500"
+                        )}
+                      />
+                    </Button>
+                  )}
                 </div>
-                <Button variant="ghost" size="icon">
-                  <Bookmark className="h-5 w-5" />
-                </Button>
               </div>
               <p className="mt-2 font-semibold">
                 {/* {post.likes.toLocaleString()} likes */}
