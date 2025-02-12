@@ -60,6 +60,7 @@ const Navigation = () => {
               <Link
                 key={item.name}
                 href={item.href}
+                prefetch={item.name === "Logout" ? false : true}
                 className={cn(
                   "group flex flex-col items-center gap-1 p-2 transition-colors hover:text-foreground/80",
                   pathname === item.href
