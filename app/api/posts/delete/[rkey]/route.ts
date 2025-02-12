@@ -1,16 +1,16 @@
-import { NextResponse } from "next/server";
-import { getSessionAgent } from "@/lib/getSessionAgent";
-import { db } from "@/db";
-import { posts } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { NextResponse } from "next/server"
+import { getSessionAgent } from "@/lib/getSessionAgent"
+import { db } from "@/db"
+import { posts } from "@/db/schema"
+import { eq } from "drizzle-orm"
 
-export const GET = async (req: Request, { params }: { params: Promise<{ rkey: string }>}) => {
+export const DELETE = async (req: Request, { params }: { params: Promise<{ rkey: string }> }) => {
   // Get the authenticated session agent
-  const agent = await getSessionAgent();
-  
+  const agent = await getSessionAgent()
+
   // If no session, return unauthorized
   if (!agent) {
-    return NextResponse.json({ error: "Session required" }, { status: 401 });
+    return NextResponse.json({ error: "Session required" }, { status: 401 })
   }
 
   // Parse the request body to get the post URI
@@ -23,22 +23,22 @@ export const GET = async (req: Request, { params }: { params: Promise<{ rkey: st
       repo: agent.assertDid,
       collection: 'app.bluepic.feed.post',
       rkey
-    });
+    })
 
-    const uri = `${agent.assertDid}/app.bluepic.feed.posts/${rkey}`
+    const uri = `at://${agent.assertDid}/app.bluepic.feed.post/${rkey}`
 
     // Then delete from local database
     await db.delete(posts)
-      .where(eq(posts.uri, uri));
+      .where(eq(posts.uri, uri))
 
     // Redirect to home page after successful deletion
-    return NextResponse.json({message: `Post ${uri} deleted successfully`}, { status: 200 });
+    return NextResponse.json({ message: `Post ${uri} deleted successfully` }, { status: 200 })
 
   } catch (error) {
-    console.error('Post deletion error:', error);
+    console.error('Post deletion error:', error)
     return NextResponse.json(
-      { error: "Failed to delete post" }, 
+      { error: "Failed to delete post" },
       { status: 500 }
-    );
+    )
   }
-};
+}

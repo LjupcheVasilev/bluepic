@@ -1,14 +1,14 @@
-import { db } from "@/db";
-import { posts, users } from "@/db/schema";
-import { Post, PostWithUser, User } from "@/db/types";
-import { eq } from "drizzle-orm";
-import { NextResponse } from "next/server";
+import { db } from "@/db"
+import { posts, users } from "@/db/schema"
+import { Post, PostWithUser, User } from "@/db/types"
+import { eq } from "drizzle-orm"
+import { NextResponse } from "next/server"
 
 export const GET = async () => {
   const allPosts = await db
     .select()
     .from(posts)
-    .leftJoin(users, eq(users.did, posts.userId));
+    .leftJoin(users, eq(users.did, posts.userId))
 
   const postsWithUser = allPosts.reduce(
     (acc: PostWithUser[], post: { posts: Post; users: User | null }) => {
@@ -24,11 +24,11 @@ export const GET = async () => {
           updatedAt: post.users!.updatedAt,
           lastLogin: post.users!.lastLogin,
         },
-      });
+      })
 
-      return acc;
+      return acc
     },
     []
-  );
-  return NextResponse.json(postsWithUser);
-};
+  )
+  return NextResponse.json(postsWithUser)
+}
