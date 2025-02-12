@@ -10,7 +10,7 @@ export const createClient = async (db: Database) => {
     clientMetadata: {
       client_name: 'BluePic',
       client_id: publicUrl
-        ? `https://${url}?redirect_uri=${enc(`${url}/api/auth/callback`)}&scope=${enc('atproto transition:generic')}`
+        ? `https://${url}?redirect_uri=${enc(`https://${url}/api/auth/callback`)}&scope=${enc('atproto transition:generic')}`
         : `http://localhost?redirect_uri=${enc(`${url}/api/auth/callback`)}&scope=${enc('atproto transition:generic')}`,
       client_uri: url,
       redirect_uris: [`${url}/api/auth/callback`],
