@@ -1,0 +1,12 @@
+{
+  "redirect_uris": ["https://bluepic.vercel.app/api/auth/callback"],
+  "response_types": ["code"],
+  "grant_types": ["authorization_code", "refresh_token"],
+  "scope": "atproto transition:generic",
+  "token_endpoint_auth_method": "none",
+  "application_type": "web",
+  "client_id": "https://bluepic.vercel.app/client-metadata.json",
+  "client_name": "BluePic",
+  "client_uri": "https://bluepic.vercel.app",
+  "dpop_bound_access_tokens": true
+}
