@@ -1,1 +1,0 @@
-ALTER TABLE "posts" ADD CONSTRAINT "posts_user_id_users_did_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("did") ON DELETE no action ON UPDATE no action;

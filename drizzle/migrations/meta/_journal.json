@@ -5,36 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1738458365643,
-      "tag": "0000_init",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1738520390051,
-      "tag": "0001_chilly_nekra",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1738787926901,
-      "tag": "0002_abandoned_valkyrie",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1739306801966,
-      "tag": "0003_concerned_lake",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1739308556131,
-      "tag": "0004_lucky_darwin",
+      "when": 1739395644507,
+      "tag": "0000_cute_christian_walker",
       "breakpoints": true
     }
   ]
