@@ -65,9 +65,7 @@ export default function CreatePost() {
       } else {
         toast({
           title: "Post Created",
-          description: `Your post has been successfully shared!\n ${JSON.stringify(
-            imageObject
-          )}`,
+          description: "Your post has been successfully shared!",
         })
 
         // Reset form
