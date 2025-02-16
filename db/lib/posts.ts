@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm"
+import { desc, eq } from "drizzle-orm"
 import { db } from ".."
 import { posts, users } from "../schema"
 import { UpsertPost, NewPost, PostWithUser, Post, User } from "../types"
@@ -31,6 +31,7 @@ export const getAllPostsWithUsers = async () => {
         .select()
         .from(posts)
         .leftJoin(users, eq(users.did, posts.userId))
+        .orderBy(desc(posts.createdAt))
 
     return allPosts.reduce(
         (acc: PostWithUser[], post: { posts: Post; users: User | null }) => {
