@@ -12,6 +12,7 @@ export default function Profile() {
   const [userPosts, setUserPosts] = useState<any[]>([])
   const [userAvatar, setUserAvatar] = useState<string>()
   const [isLoading, setIsLoading] = useState(true)
+  const [profile, setProfile] = useState<{ description?: string }>({})
 
   useEffect(() => {
     const fetchUserPosts = async () => {
@@ -56,6 +57,24 @@ export default function Profile() {
     fetchUserAvatar()
   }, [session])
 
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      if (!session.did || session.did === "") {
+        return
+      }
+      try {
+        const response = await fetch(`/api/users/${session.did}/profile`)
+        if (!response.ok) throw new Error("Failed to fetch profile")
+        const profileData = await response.json()
+        setProfile(profileData)
+      } catch (error) {
+        console.error("Error fetching user profile:", error)
+      }
+    }
+
+    fetchUserProfile()
+  }, [session])
+
   if (!user || !session || isLoading) {
     return <div>Loading...</div>
   }
@@ -79,10 +98,14 @@ export default function Profile() {
               <p>
                 <span className="font-bold">{userPosts.length}</span> posts
               </p>
-              {/* We can add followers/following counts later when implemented */}
             </div>
-            <div className="whitespace-pre-line">
+            <div className="whitespace-pre-line space-y-2">
               <p className="font-bold">{user.name}</p>
+              {profile.description && (
+                <p className="text-sm text-muted-foreground max-w-[400px]">
+                  {profile.description}
+                </p>
+              )}
             </div>
           </div>
         </div>
