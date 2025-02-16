@@ -16,13 +16,12 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const handle = body?.handle
 
-
     // Validate handle
     if (typeof handle !== 'string' || !isValidHandle(handle)) {
-      return NextResponse.json({ 
-        error: 'Invalid handle' 
-      }, { 
-        status: 400 
+      return NextResponse.json({
+        error: 'Invalid handle'
+      }, {
+        status: 400
       })
     }
 
@@ -34,32 +33,32 @@ export async function POST(req: NextRequest) {
       const url = await oauthClient.authorize(handle, {
         scope: 'atproto transition:generic',
       })
-      
+
       // Redirect to the authorization URL
-      return NextResponse.json({url: url.toString()})
+      return NextResponse.json({ url: url.toString() })
     } catch (err) {
       // Log the error
       console.error('OAuth authorize failed', err)
 
       // Handle specific OAuth resolver errors
-      const errorMessage = 
-        err instanceof OAuthResolverError 
-          ? err.message 
+      const errorMessage =
+        err instanceof OAuthResolverError
+          ? err.message
           : "Couldn't initiate login"
 
-      return NextResponse.json({ 
-        error: errorMessage 
-      }, { 
-        status: 500 
+      return NextResponse.json({
+        error: errorMessage
+      }, {
+        status: 500
       })
     }
   } catch (error) {
     // Handle any unexpected errors
     console.error('Login route error', error)
-    return NextResponse.json({ 
-      error: 'Internal server error' 
-    }, { 
-      status: 500 
+    return NextResponse.json({
+      error: 'Internal server error'
+    }, {
+      status: 500
     })
   }
 }

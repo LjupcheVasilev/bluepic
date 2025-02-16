@@ -2,9 +2,9 @@ import { getSessionAgent } from "@/lib/getSessionAgent"
 import { NextResponse } from "next/server"
 import { TID } from "@atproto/common"
 import * as Like from "@/lexicon/types/app/bluepic/feed/like"
-import { db } from "@/db"
-import { likes } from "@/db/schema"
 import { NewLike } from "@/db/types"
+import { addLike } from "@/lib/atproto/likes"
+import { addLike as addLikeInDb } from '@/db/lib/likes'
 
 export const POST = async (req: Request) => {
   // If the user is signed in, get an agent which communicates with their server
@@ -13,7 +13,7 @@ export const POST = async (req: Request) => {
     return NextResponse.json({ error: "Session required" }, { status: 401 })
   }
 
-  // Construct & validate their status record
+  // Construct & validate the like record
   const rkey = TID.nextStr()
   const reqData = await req.json()
   const record = {
@@ -35,13 +35,7 @@ export const POST = async (req: Request) => {
   let uri: string = ""
   try {
     // Write the status record to the user's repository
-    const res = await agent.com.atproto.repo.putRecord({
-      repo: agent.assertDid,
-      collection: "app.bluepic.feed.like",
-      rkey,
-      record,
-      validate: false,
-    })
+    const res = await addLike(rkey, record)
     uri = res.data.uri
   } catch (err) {
     console.error({ err }, "failed to write record")
@@ -61,11 +55,7 @@ export const POST = async (req: Request) => {
 
   try {
     // Optimistically update our DB
-    // This isn't strictly necessary because the write event will be
-    // handled in #/firehose/ingestor.ts, but it ensures that future reads
-    // will be up-to-date after this method finishes.
-
-    await db.insert(likes).values(like)
+    await addLikeInDb(like)
   } catch (err) {
     console.error(
       { err },

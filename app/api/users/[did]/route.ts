@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { db } from "@/db"
 import { users } from "@/db/schema"
 import { eq } from "drizzle-orm"
+import { getUser } from "@/db/lib/users"
 
 export const GET = async (
   req: Request,
@@ -10,19 +11,7 @@ export const GET = async (
   try {
     const { did } = await params
 
-    const user = await db
-      .select({
-        did: users.did,
-        handle: users.handle,
-        displayName: users.displayName,
-        avatarLink: users.avatarLink,
-        description: users.description,
-        createdAt: users.createdAt,
-        updatedAt: users.updatedAt,
-      })
-      .from(users)
-      .where(eq(users.did, did))
-      .limit(1)
+    const user = await getUser(did)
 
     if (user.length === 0) {
       return NextResponse.json({ error: "User not found" }, { status: 404 })

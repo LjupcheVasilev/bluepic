@@ -3,6 +3,7 @@ import { likes } from "@/db/schema"
 import { eq } from "drizzle-orm"
 import { getSessionAgent } from "@/lib/getSessionAgent"
 import { db } from "@/db"
+import { getUserLikes } from "@/db/lib/users"
 
 export async function GET() {
     try {
@@ -11,13 +12,7 @@ export async function GET() {
             return new NextResponse("Unauthorized", { status: 401 })
         }
 
-        const userLikes = await db
-            .select({
-                uri: likes.uri,
-                postId: likes.postId,
-            })
-            .from(likes)
-            .where(eq(likes.userId, agent.assertDid))
+        const userLikes = await getUserLikes(agent.assertDid)
 
         return NextResponse.json(userLikes)
     } catch (error) {

@@ -74,7 +74,7 @@ export function useLikes() {
     setError(null)
     try {
       const response = await fetch(
-        `/api/likes/delete/${encodeURIComponent(likeUri)}`,
+        `/api/likes/${encodeURIComponent(likeUri)}`,
         {
           method: "DELETE",
         }

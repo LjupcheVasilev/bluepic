@@ -1,8 +1,5 @@
-import { db } from "@/db"
-import { posts, users } from "@/db/schema"
-import { Post, PostWithUser, User } from "@/db/types"
+import { getUserPosts } from "@/db/lib/posts"
 import { getSessionAgent } from "@/lib/getSessionAgent"
-import { eq } from "drizzle-orm"
 import { NextResponse } from "next/server"
 
 export const GET = async (req: Request, { params }: { params: Promise<{ userId: string }> }) => {
@@ -12,11 +9,7 @@ export const GET = async (req: Request, { params }: { params: Promise<{ userId: 
     }
 
     const { userId } = await params
-    const allPosts = await db
-        .select()
-        .from(posts)
-        .where(eq(posts.userId, userId))
-
+    const allPosts = await getUserPosts(userId)
 
     return NextResponse.json(allPosts)
 }
