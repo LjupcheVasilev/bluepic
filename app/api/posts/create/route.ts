@@ -62,5 +62,8 @@ export const POST = async (req: Request) => {
     )
   }
 
-  return NextResponse.redirect(new URL('/', getUrl()))
+  return NextResponse.json(
+    { message: "Post created successfully!" },
+    { status: 201 }
+  )
 }
