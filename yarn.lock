@@ -969,10 +969,10 @@
   resolved "https://registry.yarnpkg.com/@drizzle-team/brocli/-/brocli-0.10.2.tgz#9757c006a43daaa6f45512e6cf5fabed36fb9da7"
   integrity sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w==
 
-"@effect/platform@0.70.7":
-  version "0.70.7"
-  resolved "https://registry.yarnpkg.com/@effect/platform/-/platform-0.70.7.tgz#b770e648b86a82f0bcaaa1fd1aa2fbc5758c4d2f"
-  integrity sha512-TbNwj/mOJhycPygbmicGBS7CNtv5Z8WVheRbLUdP3oPAe/nbSOJVLc8ZPvOejhquF/1vJMKuqY5MWfkcBpvi/g==
+"@effect/platform@0.72.0":
+  version "0.72.0"
+  resolved "https://registry.yarnpkg.com/@effect/platform/-/platform-0.72.0.tgz#c7b79677bdeb5932a2d33f22fb173589fbbe3bef"
+  integrity sha512-uHsW2hlo6AiIW3zpLAVAoNvJngS/JwCZBAM4RSRllm8JTgjjCraef78FJBDNnSXz+2a10Xzzx4qxVsP3s8EV5Q==
   dependencies:
     find-my-way-ts "^0.1.5"
     multipasta "^0.2.5"
@@ -2794,10 +2794,10 @@
     "@smithy/types" "^4.1.0"
     tslib "^2.6.2"
 
-"@standard-schema/spec@1.0.0-beta.3":
-  version "1.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@standard-schema/spec/-/spec-1.0.0-beta.3.tgz#4dbf9a3c69e10fa2997e1ac1f39d8e9f33213576"
-  integrity sha512-0ifF3BjA1E8SY9C+nUew8RefNOIq0cDlYALPty4rhUm8Rrl6tCM8hBT4bhGhx7I7iXD0uAgt50lgo8dD73ACMw==
+"@standard-schema/spec@1.0.0-beta.4":
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@standard-schema/spec/-/spec-1.0.0-beta.4.tgz#62f520109add3eb016004098363bfee0678dd1ec"
+  integrity sha512-d3IxtzLo7P1oZ8s8YNvxzBUXRXojSut8pbPrTYtzsc5sn4+53jVqbk66pQerSZbZSJZQux6LkclB/+8IDordHg==
 
 "@supabase/auth-helpers-nextjs@^0.10.0":
   version "0.10.0"
@@ -3052,21 +3052,21 @@
   resolved "https://registry.yarnpkg.com/@uploadthing/mime-types/-/mime-types-0.3.4.tgz#2644ec4f3e8db781dc843fc30caaca8188356464"
   integrity sha512-EB0o0a4y++UJFMLqS8LDVhSQgXUllG6t5fwl5cbmOM0Uay8YY5Nc/JjFwzJ8wccdIKz4oYwQW7EOSfUyaMPbfw==
 
-"@uploadthing/react@^7.1.3":
-  version "7.1.5"
-  resolved "https://registry.yarnpkg.com/@uploadthing/react/-/react-7.1.5.tgz#8ff452b0ec3799acaafbcc31a52732bae355cce7"
-  integrity sha512-D0lP4YnUWw5LFHrLuL+sq26wlul9dGE70G+oOQ+qkM1ZqSeKSGvIdAIOAQUBj2qQi4Re7o0VpF3+3qBF3svN6A==
+"@uploadthing/react@^7.2.1":
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/@uploadthing/react/-/react-7.2.1.tgz#552f60f3e876079786d3a1dce52729a24a66603e"
+  integrity sha512-X8iUJDOFyT9DonfZkxx3ngWvr4iz47tmXT7pC0209YT+Odfmq/sd/a0w7UcFrCiYIV1CL0xD97ynRDTN3LX48Q==
   dependencies:
-    "@uploadthing/shared" "7.1.5"
+    "@uploadthing/shared" "7.1.6"
     file-selector "0.6.0"
 
-"@uploadthing/shared@7.1.5":
-  version "7.1.5"
-  resolved "https://registry.yarnpkg.com/@uploadthing/shared/-/shared-7.1.5.tgz#4dd59dd1860359d28e945f3bd19002bc540c3161"
-  integrity sha512-5ePSiR2CPA5a8gfPqsHpE/uPwGG9iPqhxcFpeLGnEuExPqIi5ZY7upZgpc+6T1gMxwfbP0O5X4043TTNk3q/pA==
+"@uploadthing/shared@7.1.6":
+  version "7.1.6"
+  resolved "https://registry.yarnpkg.com/@uploadthing/shared/-/shared-7.1.6.tgz#65d80f40381cc71e8ced9139f47a7cc95fbff8a7"
+  integrity sha512-7EyTxaGiTIdyqCwNQFryo0LR4eZgyClq31igrjGrXHkxSlXnurphybjzB6AVD73UBPVGCfbtOK0lloduhsMNlg==
   dependencies:
     "@uploadthing/mime-types" "0.3.4"
-    effect "3.11.5"
+    effect "3.12.0"
     sqids "^0.3.0"
 
 abort-controller@^3.0.0:
@@ -3895,12 +3895,12 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
-effect@3.11.5:
-  version "3.11.5"
-  resolved "https://registry.yarnpkg.com/effect/-/effect-3.11.5.tgz#48ca458df10955ac2597828b960e3f0a178c2b2a"
-  integrity sha512-oSzaR/S/2A/qDTnDqMWxQUNSjCG2sRLB4NEvTu+l9RqE122MTgKXOWzw0x4MHsdovRTzAihfkpgBj2aLFnH2+w==
+effect@3.12.0:
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/effect/-/effect-3.12.0.tgz#0b02740d288a7b679dcfa525b55e1186c81b6195"
+  integrity sha512-b/u9s3b9HfTo0qygVouegP0hkbiuxRIeaCe1ppf8P88hPyl6lKCbErtn7Az4jG7LuU7f0Wgm4c8WXbMcL2j8+g==
   dependencies:
-    fast-check "^3.21.0"
+    fast-check "^3.23.1"
 
 electron-to-chromium@^1.5.73:
   version "1.5.90"
@@ -4450,7 +4450,7 @@ express@^4.17.2:
     utils-merge "1.0.1"
     vary "~1.1.2"
 
-fast-check@^3.21.0:
+fast-check@^3.23.1:
   version "3.23.2"
   resolved "https://registry.yarnpkg.com/fast-check/-/fast-check-3.23.2.tgz#0129f1eb7e4f500f58e8290edc83c670e4a574a2"
   integrity sha512-h5+1OzzfCC3Ef7VbtKdcv7zsstUQwUDlYpUTvjeUsJAssPgLn7QzbboPtL5ro04Mq0rPOsMzl7q5hIbRs2wD1A==
@@ -6951,16 +6951,16 @@ update-browserslist-db@^1.1.1:
     escalade "^3.2.0"
     picocolors "^1.1.1"
 
-uploadthing@^7.4.1:
-  version "7.4.4"
-  resolved "https://registry.yarnpkg.com/uploadthing/-/uploadthing-7.4.4.tgz#3b06a483b86c99c25d2602ffbc1b18d155b1e53e"
-  integrity sha512-dgV8LqaKrXSnpDkqzzLbVEmIubMPi8a5bRtIzM+rG5EbZpIZyOG0bByLxdSlkSbK5L6F+HbIGX5eDkLPFNL8dg==
+uploadthing@^7.5.1:
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/uploadthing/-/uploadthing-7.5.1.tgz#d5c51711c08f97bcb73ffc0c2d3dd4dcd976934a"
+  integrity sha512-p5VxxT4i7LYLiKE+FgtMnIztvDfgZ1IptY62PF2YpgvxFccIbX/OXx8OcW/psjKCmPC7PXEt3e9d+bduYJOmDw==
   dependencies:
-    "@effect/platform" "0.70.7"
-    "@standard-schema/spec" "1.0.0-beta.3"
+    "@effect/platform" "0.72.0"
+    "@standard-schema/spec" "1.0.0-beta.4"
     "@uploadthing/mime-types" "0.3.4"
-    "@uploadthing/shared" "7.1.5"
-    effect "3.11.5"
+    "@uploadthing/shared" "7.1.6"
+    effect "3.12.0"
 
 uri-js@^4.2.2:
   version "4.4.1"
