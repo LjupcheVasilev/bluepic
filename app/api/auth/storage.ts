@@ -9,7 +9,7 @@ import { Database } from '@/db/index'
 import { eq } from 'drizzle-orm'
 
 export class StateStore implements NodeSavedStateStore {
-  constructor(private db: Database, ) {this.db = db}
+  constructor(private db: Database,) { this.db = db }
   async get(key: string): Promise<NodeSavedState | undefined> {
     const result = (await this.db.select().from(authState).where(eq(authState.key, key)))[0]
     if (!result) return
@@ -27,7 +27,7 @@ export class StateStore implements NodeSavedStateStore {
 }
 
 export class SessionStore implements NodeSavedSessionStore {
-  constructor(private db: Database) {this.db = db}
+  constructor(private db: Database) { this.db = db }
   async get(key: string): Promise<NodeSavedSession | undefined> {
     const result = (await this.db.select().from(authSession).where(eq(authSession.key, key)))[0]
     if (!result) return
@@ -38,6 +38,11 @@ export class SessionStore implements NodeSavedSessionStore {
     await this.db
       .insert(authSession)
       .values({ key, session })
+      .onConflictDoUpdate({
+        target: authSession.key,
+        set: { session },
+        targetWhere: eq(authSession.key, key),
+      })
   }
   async del(key: string) {
     await this.db.delete(authSession).where(eq(authSession.key, key))
