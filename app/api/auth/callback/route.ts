@@ -8,7 +8,7 @@ import { db } from "@/db"
 import { users } from "@/db/schema"
 import { eq } from "drizzle-orm"
 import { getSessionAgent } from "@/lib/getSessionAgent"
-import { resolveDidToHandle } from "@/lib/biDirectionalResolver"
+import { resolveDidToHandle } from "@/lib/didResolver"
 import { createIdResolver } from "@/lib/createIngester"
 
 export const GET = async (req: Request) => {

@@ -4,8 +4,8 @@ import { TID } from "@atproto/common"
 import * as Post from "@/lexicon/types/app/bluepic/feed/post"
 import { addPost as addPostInDb } from "@/db/lib/posts"
 import { posts } from "@/db/schema"
-import { getUrl } from "@/lib/getUrl"
-import { addPost } from "@/lib/atproto/posts"
+import { addPost as addPostInAtmosphere } from "@/lib/atproto/posts"
+import { NewPost } from "@/db/types"
 
 export const POST = async (req: Request) => {
   // If the user is signed in, get an agent which communicates with their server
@@ -33,7 +33,7 @@ export const POST = async (req: Request) => {
   let uri: string = ""
   try {
     // Write the status record to the user's repository
-    const res = await addPost(rkey, record)
+    const res = await addPostInAtmosphere(rkey, record)
     uri = res.data.uri
   } catch (err) {
     console.error({ err }, "failed to write record")
@@ -44,8 +44,7 @@ export const POST = async (req: Request) => {
   }
 
   try {
-    // Optimistically update our DB
-    const post: typeof posts.$inferInsert = {
+    const post: NewPost = {
       uri,
       userId: agent.assertDid,
       imageUrl: record.imageUrl,
